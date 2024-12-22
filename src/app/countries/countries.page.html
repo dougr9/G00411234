@@ -1,13 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Countries</ion-title>
+    <ion-title>{{keyword}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Countries</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card *ngFor="let x of countryInfo">
+    <img src="{{x.flags.png}}" />
+    <ion-card-header>
+      <ion-card-title>{{x.name.official}}</ion-card-title>
+      </ion-card-header>
+      <ion-button expand="block" fill="outline" (click)="openNews()">NEWS</ion-button>
+      <ion-button expand="block" fill="outline" (click)="openWeather()">WEATHER</ion-button>
+  </ion-card>
 </ion-content>
