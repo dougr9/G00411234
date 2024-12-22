@@ -1,16 +1,19 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>{{keyword}}</ion-title>
+    <ion-title>{{ keyword }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngFor="let x of countryInfo">
-    <img src="{{x.flags.png}}" />
+  <!-- Loop through the list of countries and display each country -->
+  <ion-card *ngFor="let country of countryInfo">
+    <img [src]="country.flags.png" alt="Flag" />
     <ion-card-header>
-      <ion-card-title>{{x.name.official}}</ion-card-title>
-      </ion-card-header>
-      <ion-button expand="block" fill="outline" (click)="openNews()">NEWS</ion-button>
-      <ion-button expand="block" fill="outline" (click)="openWeather()">WEATHER</ion-button>
+      <ion-card-title>{{ country.name.official }}</ion-card-title>
+    </ion-card-header>
+
+    <!-- When clicking "NEWS", store the cca2 of the selected country and navigate to the News page -->
+    <ion-button expand="block" fill="outline" (click)="openNews(country)">NEWS</ion-button>
+    <ion-button expand="block" fill="outline" (click)="openWeather()">WEATHER</ion-button>
   </ion-card>
 </ion-content>

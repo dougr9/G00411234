@@ -1,13 +1,23 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>News</ion-title>
+    <ion-title>Latest News for {{ countryName }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">News</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- If no news found, show message -->
+  <div *ngIf="noNewsMessage">
+    <p>{{ noNewsMessage }}</p>
+  </div>
+
+  <!-- If news found, display the news cards -->
+  <ion-card *ngFor="let news of newsList">
+    <img *ngIf="news.image_url" [src]="news.image_url" alt="News image" />
+    <ion-card-header>
+      <ion-card-title>{{ news.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ news.description }}</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

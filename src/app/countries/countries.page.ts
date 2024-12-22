@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 export class CountriesPage implements OnInit {
 
   keyword: string= "";
-  countryInfo!: any;
+  countryInfo: any[] = []; // Array to store the list of countries
 
   options: HttpOptions = {
     url: "https://restcountries.com/v3.1/name/"
@@ -37,8 +37,16 @@ export class CountriesPage implements OnInit {
     console.log(JSON.stringify(this.countryInfo));
   }
 
-  async openNews() {
-      this.router.navigate(['/news'])
+  // Method to open the news for a specific country
+  async openNews(country: any) {
+    const countryCca2 = country.cca2; // Get the cca2 of the clicked country
+    const countryName = country.name.official; // Get the full country name
+
+    await this.ds.set("countryCca2", countryCca2); // Store cca2 in local storage
+    await this.ds.set("countryName", countryName); // Store country name in local storage
+
+    console.log("Selected Country CCA2 Code:", countryCca2, "Country Name:", countryName); // For debugging
+    this.router.navigate(['/news']);
   }
 
   async openWeather() {
