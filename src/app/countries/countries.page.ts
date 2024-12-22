@@ -49,8 +49,20 @@ export class CountriesPage implements OnInit {
     this.router.navigate(['/news']);
   }
 
-  async openWeather() {
-    this.router.navigate(['/weather'])
-}
+  async openWeather(country: any) {
+    // Store the necessary data (country name and coordinates) in local storage
+    const countryName = country.name.official;
+    const lat = country.capitalInfo.latlng[0]; // Latitude of the capital city
+    const lon = country.capitalInfo.latlng[1]; // Longitude of the capital city
+    const capitalName = country.capital;
+
+    await this.ds.set('countryName', countryName); // Store country name
+    await this.ds.set('latitude', lat); // Store latitude
+    await this.ds.set('longitude', lon); // Store longitude
+    await this.ds.set('capital', capitalName); // Store longitude
+
+    console.log("Selected Country:", countryName, "Latitude:", lat, "Longitude:", lon); // For debugging
+    this.router.navigate(['/weather']); // Navigate to Weather page
+  }
 
 }
