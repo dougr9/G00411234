@@ -5,9 +5,22 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Settings</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <ion-radio-group [(ngModel)]="unit" (ionChange)="setUnit($event)">
+      <!-- (ionChange)- event binding syntax in Angular
+      it calls the setUnit($event) method when the selection is changed.
+      The $event object contains the new value of the selected radio button.
+
+      https://ionicframework.com/docs/api/range#using-ionchange
+      
+      -->
+    
+        <ion-radio value="metric">metric</ion-radio> <br>
+     
+        <ion-radio value="standard">standard</ion-radio> <br>
+      
+        <ion-radio value="imperial">imperial</ion-radio> <br>
+      
+  </ion-radio-group>
 </ion-content>
+
